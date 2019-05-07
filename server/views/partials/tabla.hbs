@@ -1,0 +1,40 @@
+<h3 class="text-center my-2">Busqueda</h3>
+<input class="form-control my-2" spellcheck="false" autocomplete="off" name="typeahead" type="text" placeholder="Nombre a buscar"/>
+{{#if docs}}
+    <table class="table table-bordered table-striped" id='crud-table'>
+        <thead>
+            <tr>
+                <th class="text-center" id="nombre" type="text" prime="true" static="true">Nombre</th>
+                <th class="text-center" id="tel1" type="text">Telefono 1</th>
+                <th class="text-center" id="tel2" type="text">Telefono 2</th>
+                <th class="text-center" id="direccion" type="text">Dirección</th>
+                <th class="text-center" id="correo" type="text">Correo electrónico</th>
+                <th class="text-center" id="tipo" type="text">Tipo de contacto</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>            
+        <tbody>
+        {{#each docs}}
+        <tr>
+            <td>{{nombre}}</td>
+            <td>{{tel1}}</td>
+            <td>{{tel2}}</td>
+            <td>{{direccion}}</td>
+            <td>{{correo}}</td>
+            <td>{{tipo}}</td>
+            <td class="text-center">
+                <a class="" href="/modifica?id={{_id}}" role="button">
+                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                </a>
+            </td>
+            <td class="text-center">
+                <a class="" href="/borrar?id={{_id}}" role="button">
+                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+{{/if}}

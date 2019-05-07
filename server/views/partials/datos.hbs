@@ -1,0 +1,43 @@
+    <h3 class="text-center my-2">Nuevo Contacto</h3>
+    <form method="post" action="/nuevo" class="form-group">
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-user-circle mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre Completo" value="{{nombre}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-phone mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="tel1" id="tel1" class="form-control" placeholder="Telefono 1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-mobile mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="tel2" id="tel2" class="form-control" placeholder="Telefono 2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-address-book mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Dirección">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-envelope-open mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="correo" id="correo" class="form-control" placeholder="Correo electrónico">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-address-card mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Tipo de Contacto">
+            </div>
+        </div>
+        <div class="row justify-content-center my-2">
+            <button id="btn-guardar" name="btn-guardar" class="btn btn-success mr-4"><i class="fa fa-floppy-o mr-2" aria-hidden="true"></i>Guardar</button>
+            <button id="btn-limpiar" name="btn-limpiar" class="btn btn-secondary"><i class="fa fa-eraser mr-2" aria-hidden="true"></i>Limpiar</button>
+        </div>
+    </form>    

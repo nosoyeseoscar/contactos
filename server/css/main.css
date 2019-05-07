@@ -1,0 +1,5 @@
+/* CSS para hacer botón transparente */
+.ancla {
+    background: transparent;
+    border: none !important;
+}

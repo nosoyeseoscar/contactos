@@ -1,0 +1,135 @@
+{{!-- alerta de errores en validaciones de datos contacto  --}}
+{{#each errores}}
+    <div class="col-12">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    </div>
+{{/each}}
+
+{{!-- Alerta de mensaes de éxito en alta/modificación --}}
+{{#if msg}} {{!-- Cómo ést es un objeto es necesario hacer mención explicita de la propiedad, en éste caso mensaje.msg --}}
+    <div class="col-12">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    </div>
+{{/if}}
+
+{{!-- <div class="col-md-4 boder right">
+    {{>datos}}
+</div>
+<div class="col-md-8">
+    {{>tabla}}
+</div>--}}
+{{!-- Columna para captura de nuevos contactos --}}
+<div class="col-md-4 border-right">
+    <h3 class="text-center my-2">Nuevo Contacto</h3>
+    <form method="post" action="/nuevo" class="form-group">
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-user-circle mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre Completo"
+              {{#if datos.nombre}} value = "{{datos.nombre}}" {{/if}} {{!-- relleneamos los campos con datos de la captura anterior --}}
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-phone mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="tel1" id="tel1" class="form-control" placeholder="Telefono 1"
+                {{#if datos.tel1}} value = "{{datos.tel1}}" {{/if}} {{!-- relleneamos los campos con datos de la captura anterior --}}
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-mobile mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="tel2" id="tel2" class="form-control" placeholder="Telefono 2"
+                {{#if datos.tel2}} value = "{{datos.tel2}}" {{/if}} {{!-- relleneamos los campos con datos de la captura anterior --}}
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-address-book mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Dirección"
+                {{#if datos.direccion}} value = "{{datos.direccion}}" {{/if}} {{!-- relleneamos los campos con datos de la captura anterior --}}
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-envelope-open mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="correo" id="correo" class="form-control" placeholder="Correo electrónico"
+                {{#if datos.correo}} value = "{{datos.correo}}" {{/if}} {{!-- relleneamos los campos con datos de la captura anterior --}}
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col input-group my-2">
+                <i class="fa fa-address-card mt-2 mr-2" aria-hidden="true"></i>
+                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="Tipo de Contacto"
+                {{#if datos.tipo}} value = "{{datos.tipo}}" {{/if}} {{!-- relleneamos los campos con datos de la captura anterior --}}
+                >
+            </div>
+        </div>
+        <div class="row justify-content-center my-2">
+            <button id="btn-guardar" name="btn-guardar" class="btn btn-success mr-4"><i class="fa fa-floppy-o mr-2" aria-hidden="true"></i>Guardar</button>
+            <button id="btn-limpiar" name="btn-limpiar" class="btn btn-secondary"><i class="fa fa-eraser mr-2" aria-hidden="true"></i>Limpiar</button>
+        </div>
+    </form>    
+</div> 
+
+{{!-- Columna para buscar contactos --}}
+<div class="col-md-8"> 
+    {{#if docs}}
+    <h3 class="text-center my-2">Busqueda</h3>
+    <input class="form-control my-2" spellcheck="false" autocomplete="off" name="typeahead" type="text" placeholder="Nombre a buscar"/>
+        <table class="table table-bordered table-striped" id='crud-table'>
+            <thead>
+                <tr>
+                    <th class="text-center" id="nombre" type="text" prime="true" static="true">Nombre</th>
+                    <th class="text-center" id="tel1" type="text">Telefono 1</th>
+                    <th class="text-center" id="tel2" type="text">Telefono 2</th>
+                    <th class="text-center" id="direccion" type="text">Dirección</th>
+                    <th class="text-center" id="correo" type="text">Correo electrónico</th>
+                    <th class="text-center" id="tipo" type="text">Tipo de contacto</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>            
+            <tbody>
+            {{#each docs}}
+            <tr>
+                <td>{{nombre}}</td>
+                <td>{{tel1}}</td>
+                <td>{{tel2}}</td>
+                <td>{{direccion}}</td>
+                <td>{{correo}}</td>
+                <td>{{tipo}}</td>
+                <td class="text-center">
+                    <button type="submit" class="ancla"><i class="fa fa-pencil-square" aria-hidden="true"></i></button>
+                   {{!--  <a class="" href="/modifica?id={{_id}}" role="button">
+                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                    </a> --}}
+                </td>
+                <td class="text-center">
+                    <a class="" name="borrar-con" href="" onclick= "borrar({{_id}})" role="button">
+                        <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+            <p class="lead text-center">No hay Contactos en la Base de datos.</p>
+    {{/if}}
+</div>
