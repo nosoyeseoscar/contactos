@@ -10,8 +10,8 @@
   "author": "Oscar Fuentes Esteves",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.21.0",
+    "body-parser": "^1.20.4",
+    "express": "^4.22.1",
     "hbs": "^4.0.4",
     "mongoose": "^5.5.3"
   },
